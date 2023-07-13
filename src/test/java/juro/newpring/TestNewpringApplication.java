@@ -7,7 +7,7 @@ import org.springframework.boot.testcontainers.service.connection.ServiceConnect
 import org.springframework.context.annotation.Bean;
 import org.testcontainers.containers.MySQLContainer;
 
-@TestConfiguration(proxyBeanMethods = false)
+@TestConfiguration
 public class TestNewpringApplication {
 
 	@Bean
