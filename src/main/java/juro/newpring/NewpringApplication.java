@@ -25,10 +25,10 @@ public class NewpringApplication {
 }
 
 @RestController
-class PersonController {
+class CustomerController {
 	private final CustomerRepository customerRepository;
 
-	public PersonController(CustomerRepository customerRepository) {
+	public CustomerController(CustomerRepository customerRepository) {
 		this.customerRepository = customerRepository;
 	}
 
@@ -44,6 +44,15 @@ class PersonController {
 	}
 }
 
+record Customer(@Id Long id, String name) {
+}
+
+interface CustomerRepository extends CrudRepository<Customer, Long> {
+	Iterable<Customer> findByName(String name);
+}
+
+// hibernate 사용할 경우 record 사용 어려움. @Entity 는 디폴트 생성자를 사용하기 때문
+
 @RestControllerAdvice
 class ErrorHandlingControllerAdvice {
 
@@ -55,12 +64,4 @@ class ErrorHandlingControllerAdvice {
 		pd.setDetail(ise.getLocalizedMessage());
 		return pd;
 	}
-}
-
-interface CustomerRepository extends CrudRepository<Customer, Long> {
-	Iterable<Customer> findByName(String name);
-}
-
-// hibernate 사용할 경우 record 사용 어려움. @Entity 는 디폴트 생성자를 사용하기 때문
-record Customer(@Id Long id, String name) {
 }

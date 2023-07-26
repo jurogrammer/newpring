@@ -1,0 +1,10 @@
+GET http://localhost:8080/customers
+
+###
+GET http://localhost:8080/customers/Becca
+
+###
+GET http://localhost:8080/customers/becca
+
+###
+GET http://localhost:8080/top-customer
